@@ -22,8 +22,14 @@ namespace BarCodeCapture
                 pictureBox1.Image = Clipboard.GetImage();
                 BarcodeReader reader = new BarcodeReader();
                 var result = reader.Decode((Bitmap)pictureBox1.Image);
-                if (result != null) { 
-                    textBox1.Text = result.ToString(); 
+                if (result != null)
+                {
+                    textBox1.Text = result.ToString();
+                    Clipboard.SetText(result.ToString());
+                }
+                else
+                {
+                    Clipboard.Clear();
                 }
             }
             else {
@@ -42,6 +48,11 @@ namespace BarCodeCapture
                 if (result != null)
                 {
                     textBox1.Text = result.ToString();
+                    Clipboard.SetText(result.ToString());
+                }
+                else
+                {
+                    Clipboard.Clear();
                 }
             }
         }
